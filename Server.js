@@ -9,7 +9,7 @@ const launchDB = require("./Config/ConnectToDB")
 launchDB()
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'https://e-learning-learning-space-front.onrender.com',
     credentials: true
 }))
 app.use(cookieParser())
