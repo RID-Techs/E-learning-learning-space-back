@@ -34,12 +34,12 @@ const Login = async (req, res) => {
 
         res.cookie("accessToken", token, {
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 2 * 60 * 1000
         })
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            secure: false,
+            secure: true,
             maxAge: 2 * 24 * 60 * 60 * 1000
         })
 
@@ -63,7 +63,7 @@ const RefreshToken = async (req, res) => {
                     const newToken = jwt.sign({userInfo: user._id}, process.env.ACCESS_TOKEN, {expiresIn: "2m"})
                     res.cookie("accessToken", newToken, {
                         httpOnly: true,
-                        secure: false,
+                        secure: true,
                         maxAge: 2 * 60 * 1000
                     })
                     res.status(200).json({TokenRefreshed: "New token sent !"})
