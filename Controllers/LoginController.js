@@ -36,13 +36,15 @@ const Login = async (req, res) => {
             httpOnly: true,
             secure: true,
             sameSite: "None",
-            maxAge: 2 * 60 * 1000
+            maxAge: 2 * 60 * 1000,
+            path: "/"
         })
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
             secure: true,
             sameSite: "None",
-            maxAge: 2 * 24 * 60 * 60 * 1000
+            maxAge: 2 * 24 * 60 * 60 * 1000,
+            path: "/"
         })
 
         res.status(200).json({UserConnected: "User Connected"})
@@ -67,7 +69,8 @@ const RefreshToken = async (req, res) => {
                         httpOnly: true,
                         secure: true,
                         sameSite: "None",
-                        maxAge: 2 * 60 * 1000
+                        maxAge: 2 * 60 * 1000,
+                        path: "/"
                     })
                     res.status(200).json({TokenRefreshed: "New token sent !"})
                 }
@@ -93,11 +96,13 @@ const LogOut = async (req, res) => {
         httpOnly: true,
         secure: true,
         sameSite: "None",
+        path: "/"
     })
     res.clearCookie("refreshToken", {
         httpOnly: true,
         secure: true,
         sameSite: "None",
+        path: "/"
     })
 
     res.status(200).json({ message: 'Logout successful' });
