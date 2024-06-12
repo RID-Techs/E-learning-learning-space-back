@@ -34,14 +34,14 @@ const Login = async (req, res) => {
 
         res.cookie("accessToken", token, {
             httpOnly: true,
-            sameSite: "none",
             secure: true,
+            sameSite: "None",
             maxAge: 2 * 60 * 1000
         })
         res.cookie("refreshToken", refreshToken, {
             httpOnly: true,
-            sameSite: "none",
             secure: true,
+            sameSite: "None",
             maxAge: 2 * 24 * 60 * 60 * 1000
         })
 
@@ -65,8 +65,8 @@ const RefreshToken = async (req, res) => {
                     const newToken = jwt.sign({userInfo: user._id}, process.env.ACCESS_TOKEN, {expiresIn: "2m"})
                     res.cookie("accessToken", newToken, {
                         httpOnly: true,
-                        sameSite: "none",
                         secure: true,
+                        sameSite: "None",
                         maxAge: 2 * 60 * 1000
                     })
                     res.status(200).json({TokenRefreshed: "New token sent !"})
@@ -91,13 +91,13 @@ const LogOut = async (req, res) => {
 
     res.clearCookie("accessToken", {
         httpOnly: true,
-        sameSite: "none",
         secure: true,
+        sameSite: "None",
     })
     res.clearCookie("refreshToken", {
         httpOnly: true,
-        sameSite: "none",
         secure: true,
+        sameSite: "None",
     })
 
     res.status(200).json({ message: 'Logout successful' });
